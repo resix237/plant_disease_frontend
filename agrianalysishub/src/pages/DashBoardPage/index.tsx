@@ -90,7 +90,7 @@ function DashboardPage() {
       {loading && <PuffCustom />}
       <div className={`pt-10 flex md:flex-row flex-col gap-10 place-items-center justify-center  ${!loading ? "block" : "hidden"}`}>
 
-        <div className=' flex flex-col basis-1/2 place-items-center gap-3 justify-center lg:h-full'>
+        <div className={` flex flex-col basis-1/2 place-items-center gap-3 justify-center lg:h-full ${prediction && "hidden"}`}>
           <div className=" bg-[url('./assets/images/untitled-design-294.webp')] h-80 w-80 bg-no-repeat bg-cover bg-center rounded-2xl  ">
             <div className="bg-gradient-to-r from-yellow-500 via-yellow-100 to-white h-full w-full opacity-35 rounded-2xl " >
             </div>
@@ -110,7 +110,7 @@ function DashboardPage() {
           {
             image === null ?
               <label
-                className="flex justify-center w-full h-full px-2 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+                className={`flex justify-center w-full h-full px-2 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none`}>
 
                 <span className="flex flex-col items-center space-x-2 place-items-center h-full justify-center">
                   <CiImageOn size={100} className="text-yellow-500" />
@@ -157,7 +157,7 @@ function DashboardPage() {
           (
             <>
               <div className=' px-20 py-16 text-dark-primary  font-Poppins font-semibold text-xl'>
-                Prediction : La est atteind de <span className=' text-yellow-500'>{prediction?.categorie}</span> avec une gravité <span className=' text-yellow-500'>{prediction?.gravite}</span> ceci  avec une précision de <span className=' text-yellow-500'>{(prediction?.precision * 100).toFixed(2)}%</span>
+                Prediction : La plante est atteind de <span className=' text-yellow-500'>{prediction?.categorie}</span> avec une gravité <span className=' text-yellow-500'>{prediction?.gravite}</span> ceci  avec une précision de <span className=' text-yellow-500'>{(prediction?.precision * 100).toFixed(2)}%</span>
               </div>
               <div className=' grid grid-cols-2 px-20 pt-10 font-Poppins '>
                 <div className=' text-center '>

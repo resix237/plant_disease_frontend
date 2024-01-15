@@ -1,4 +1,5 @@
 import { ResponseImage } from '../../../types';
+import { formaterDateHeure } from '../../../utils';
 interface ResponseImageProps {
     data: ResponseImage
 }
@@ -20,7 +21,9 @@ function ItemHistorique({ data }: ResponseImageProps) {
                 <h1>
                     Précision :   {(data?.precision * 100).toFixed(2)}
                 </h1>
-
+                <p className=' text-sm text-gray-400 font-light'>
+                    {formaterDateHeure(data?.time_created)}
+                </p>
             </div>
 
         </div>
