@@ -1,4 +1,4 @@
-import React from 'react'
+
 import image from "../../assets/images/user_photo.png"
 
 function ItemTable({ color }: any) {

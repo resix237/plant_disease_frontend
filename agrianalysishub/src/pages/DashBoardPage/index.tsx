@@ -1,9 +1,10 @@
-import axios from 'axios';
-import React, { Fragment, ChangeEvent, FocusEvent } from 'react'
+
+import React, { Fragment, ChangeEvent } from 'react'
 import { CiImageOn } from "react-icons/ci";
 import { GrPowerReset } from "react-icons/gr";
 import { v4 as uuidv4 } from 'uuid';
 import PuffCustom from '../../components/PuffCustom';
+import { CORRECTION_DISEASES, DEFINITION_DISEASES } from '../../data';
 import { PredictionType } from '../../types';
 import { callApi } from '../../utils';
 
@@ -12,14 +13,12 @@ function DashboardPage() {
   const [image, setImage] = React.useState<any>(null);
   const [imageBase64, setImageBase64] = React.useState<string>('');
   const [prediction, setPrediction] = React.useState<PredictionType | null>()
-  const [imageUploaded, setImageUploaded] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>("");
 
 
   const convertToBase64 = (file: File) => {
     const reader = new FileReader();
-    let data: any;
     reader.onload = async (e) => {
       const imgElement = document.querySelector('[data-place=img]') as HTMLImageElement;
       if (imgElement) {
@@ -59,7 +58,19 @@ function DashboardPage() {
     }
     const response = await callApi("api/analyse/analyse-plante", "post", requestData)
     if (response.status === 200) {
-      setPrediction(response.data)
+      if (response.data?.base_64) {
+        setError(" Oups Format de l'image incompatible !!!")
+      }
+      else if (response.data?.found_plantain === false) {
+        setError(" Oups il parait que l'image ne contient pas de plante de Bananier !!!!!!")
+      }
+      else {
+        setPrediction(response.data)
+      }
+      setLoading(false);
+    }
+    else if (response.status === 400) {
+      setError(" Oups il parait que l'image ne contient pas de plante !!!")
       setLoading(false);
     }
     else {
@@ -134,21 +145,55 @@ function DashboardPage() {
                 setImage(null);
                 setImageBase64('');
                 setPrediction(null);
+                setError('');
               }} size={30} className="cursor-pointer text-dark-primary" />
             </div>
           )
         }
       </div>
 
-      {
-        prediction?.categorie &&
-        (
-          <div className=' px-10 py-16 text-dark-primary  font-Poppins font-semibold text-xl'>
-            Prediction : La est <span className=' text-yellow-500'>{prediction?.categorie}</span>   avec une précision de <span className=' text-yellow-500'>{(prediction?.precision * 100).toFixed(2)}%</span>
-          </div>
-        )
+      {prediction !== null && (
+        prediction?.malade === true ?
+          (
+            <>
+              <div className=' px-20 py-16 text-dark-primary  font-Poppins font-semibold text-xl'>
+                Prediction : La est atteind de <span className=' text-yellow-500'>{prediction?.categorie}</span> avec une gravité <span className=' text-yellow-500'>{prediction?.gravite}</span> ceci  avec une précision de <span className=' text-yellow-500'>{(prediction?.precision * 100).toFixed(2)}%</span>
+              </div>
+              <div className=' grid grid-cols-2 px-20 pt-10 font-Poppins '>
+                <div className=' text-center '>
+                  <h1 className=' text-xl font-Poppins text-dark-primary font-bold uppercase'>
+                    Description
+                  </h1>
+                  {
+                    DEFINITION_DISEASES[prediction?.categorie]
+                  }
+                </div>
+                <div className=' text-center '>
+                  <h1 className=' text-xl  text-dark-primary font-bold uppercase'>
+                    Moyen de correction
+                  </h1>
+                  {
+                    CORRECTION_DISEASES[prediction?.categorie]
+                  }
+                </div>
+              </div>
+
+            </>
+
+          )
+          : prediction && (
+            <div className=' px-20 py-16 pt-20 text-dark-primary  font-Poppins font-semibold text-xl'>
+              Votre plante est sainte à {(prediction?.precision * 100).toFixed(2)}
+            </div>
+          )
+      )
       }
 
+      <div className=' text-red-400 text-xl font-Poppins text-center font-semibold'>
+        {
+          error !== '' && (error)
+        }
+      </div>
     </Fragment>
   )
 }

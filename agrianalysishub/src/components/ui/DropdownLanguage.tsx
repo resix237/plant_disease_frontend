@@ -1,4 +1,4 @@
-import React from 'react';
+
 // import flag from "../../assets/icons/english.png"
 
 function DropdownLanguage() {

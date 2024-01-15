@@ -1,16 +1,16 @@
-import { lazy } from "react";
+
 import {
     createBrowserRouter,
     createRoutesFromElements,
     Route,
-    defer,
 } from "react-router-dom";
-import AddFichePage from "../pages/AddFichePAge";
-import CollecteFichePage from "../pages/CollecteFichePage";
+
+
 import DashboardPage from "../pages/DashBoardPage";
+import HistoriquePage from "../pages/HistoriquePage";
 
 
-import { RequiredAuthenticationContext, DefaultLayout } from "./ContextRouter";
+import { DefaultLayout } from "./ContextRouter";
 
 
 export const router = createBrowserRouter(
@@ -19,8 +19,7 @@ export const router = createBrowserRouter(
 
             <Route element={<DefaultLayout />} >
                 <Route path="/" element={<DashboardPage />} />
-                <Route path="/collecte" element={<CollecteFichePage />} />
-                <Route path="/add-new-fiche" element={<AddFichePage />} />
+                <Route path="/historique" element={<HistoriquePage />} />
             </Route>
             <Route path="*" element={<div> Not found</div>} />
         </Route>

@@ -1,7 +1,4 @@
-import React from 'react'
-import DropdownButton from '../ui/DropdownButton'
-import user_icon from "../../assets/icons/user.svg"
-import DropdownLanguage from '../ui/DropdownLanguage'
+
 
 function NavBar() {
     return (

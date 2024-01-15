@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { BsFillPeopleFill, BsFolderFill, BsChevronRight } from "react-icons/bs";
+import { useEffect, useRef, useState } from 'react';
+import { BsChevronRight } from "react-icons/bs";
 
 function ItemMenu({ Menu, index, open }: any) {
     const [click, setClick] = useState(false);

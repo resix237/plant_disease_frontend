@@ -1,4 +1,4 @@
-import React, { Fragment, ReactComponentElement } from 'react';
+import React, { Fragment } from 'react';
 import Modal from 'react-modal';
 
 interface ModalProps {
@@ -7,20 +7,7 @@ interface ModalProps {
     modalIsOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }
-const customStyles = {
-    content: {
-        width: "50%",
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        backgroundColor: "#3E173C",
-        borderRadius: 10,
-        zIndex: 99999,
-        transform: 'translate(-50%, -50%)',
-    },
-};
+
 
 function ModalComponent({ children, body, modalIsOpen, setIsOpen }: ModalProps) {
     let subtitle: any;
