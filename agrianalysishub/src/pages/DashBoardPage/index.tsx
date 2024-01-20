@@ -134,7 +134,7 @@ function DashboardPage() {
           }
 
 
-          <img src="" alt="preview image" id='previewImage' className={` h-full w-full ${image === null ? "hidden" : "block rounded-xl "}`} />
+          <img src="" alt="preview image" id='previewImage' className={` h-full w-full ${image === null ? "hidden" : "block rounded-md "}`} />
           <img data-place="img" alt="Selected Image" className=' hidden' />
 
         </div>
@@ -156,10 +156,10 @@ function DashboardPage() {
         prediction?.malade === true ?
           (
             <>
-              <div className=' px-20 py-16 text-dark-primary  font-Poppins font-semibold text-xl'>
+              <div className=' xl:px-20 px-3 py-16 text-dark-primary  font-Poppins font-semibold text-xl'>
                 Prediction : La plante est atteind de <span className=' text-yellow-500'>{prediction?.categorie}</span> avec une gravité <span className=' text-yellow-500'>{prediction?.gravite}</span> ceci  avec une précision de <span className=' text-yellow-500'>{(prediction?.precision * 100).toFixed(2)}%</span>
               </div>
-              <div className=' grid grid-cols-2 px-20 pt-10 font-Poppins '>
+              <div className=' grid xl:grid-cols-2 xl:px-20 px-3 pt-10 gap-5 font-Poppins '>
                 <div className=' text-center '>
                   <h1 className=' text-xl font-Poppins text-dark-primary font-bold uppercase'>
                     Description
