@@ -1,4 +1,4 @@
-export let url = `https://plant-disease-471i.onrender.com/`;
+export let url = `https://isj-api-ml-backend.onrender.com/`;
 
 export default async function callApi(route: string, method: string, body: any) {
     const headers = {
