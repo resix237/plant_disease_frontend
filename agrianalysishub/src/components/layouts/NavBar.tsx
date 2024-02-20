@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 function NavBar() {
@@ -9,8 +10,6 @@ function NavBar() {
                 <path d="M12.75 5.79297H16.875V14.043H12.75V5.79297Z" stroke="#41546A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div className=' flex place-items-center gap-4'>
-
-
             </div>
         </div>
     )

@@ -1,15 +1,10 @@
-
 import {
     createBrowserRouter,
     createRoutesFromElements,
     Route,
 } from "react-router-dom";
-
-
 import DashboardPage from "../pages/DashBoardPage";
 import HistoriquePage from "../pages/HistoriquePage";
-
-
 import { DefaultLayout } from "./ContextRouter";
 
 

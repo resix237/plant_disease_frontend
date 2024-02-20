@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { BsChevronRight } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 function ItemMenu({ Menu, index, open }: any) {
     const [click, setClick] = useState(false);
@@ -26,7 +27,7 @@ function ItemMenu({ Menu, index, open }: any) {
     return (
         !Menu.header ?
             <>
-                <a
+                <Link
                     key={index}
                     ref={ref}
                     onMouseEnter={handleMouseEnter}
@@ -37,7 +38,7 @@ function ItemMenu({ Menu, index, open }: any) {
                  hover:bg-dark-primary hover:text-white ${window.location.href.endsWith(Menu.path) ? "bg-dark-primary text-white" : " text-dark-primary"}
                   hover:shadow-sm hover:scale-105 transition-all duration-100 cursor-pointer text-md items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"} `}
-                    href={Menu.path ? Menu.path : "#"}
+                    to={Menu.path ? Menu.path : "#"}
                 >
 
                     {
@@ -52,17 +53,17 @@ function ItemMenu({ Menu, index, open }: any) {
 
 
 
-                </a>
+                </Link>
                 {
                     Menu.dropdown ?
                         <div className={`${open && click ? "block transition-all ease-in-out duration-300" : "hidden"} w-full flex flex-col text-white font-Poppins text-sm pl-10 gap-2 pr-5  `}>
 
                             {
                                 Menu.items.map((item: any) => (
-                                    <a href={item?.path} className={`flex place-items-center justify-between hover:bg-white ${urlIsActive.endsWith(item.path) ? "bg-white text-slate-700" : ""} pr-2 py-2 pl-3 cursor-pointer rounded-lg hover:text-slate-700`}>
+                                    <Link to={item?.path} className={`flex place-items-center justify-between hover:bg-white ${urlIsActive.endsWith(item.path) ? "bg-white text-slate-700" : ""} pr-2 py-2 pl-3 cursor-pointer rounded-lg hover:text-slate-700`}>
                                         {item.name}
                                         {/* <BsChevronRight size={15} /> */}
-                                    </a>
+                                    </Link>
                                 ))
                             }
                         </div>
