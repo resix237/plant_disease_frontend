@@ -123,6 +123,7 @@ className={` absolute  left-[210px] transition-all duration-300  ${!open && "sca
                 key={index}
                 Menu={Menu}
                 index={index}
+                setNavOpen={setNavOpen}
                 open={open || NavOpen}
               />
             ))}
